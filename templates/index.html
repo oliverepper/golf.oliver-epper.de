@@ -1,0 +1,372 @@
+{% from "macros/authors.html" import render_authors %}
+{% extends 'layout.html' %}
+
+{% block extra_head %}
+<meta property="og:locale" content="de_DE">
+<meta property="og:type" content="website">
+<meta property="og:title" content="FIXME">
+<!-- FIXME: meta_description -->
+<meta property="og:description" content="{{ this.meta_description or site.get_root().meta_description }}">
+<meta property="og:url" content="{{ '/' | url }}">
+<!-- FIXME: meta_description -->
+<meta property="og:image" content="FIXME">
+{% endblock extra_head %}
+
+{% block hero %}
+{% include 'partials/jumbotron.html' %}
+{% endblock hero %}
+
+{% block content %}
+<div id="unterricht" class="offset_anchor"></div>
+<div id="unterricht_content" class="mt-5 mb-5 pb-5">
+    <div class="row">
+        <div class="col">
+            <h2 style="text-align: center">Golfunterricht am Lietzenhof</h2>
+        </div>
+    </div>
+    <div class="row pt-3 bp-3">
+        <div class="col">
+            <p>Mein Name ist Oliver Epper und Sie finden mich auf der Golfanlage am Lietzenhof. Bei mir
+                erhalten Sie
+                Golfunterricht orientiert am Ballflug. Schwungumstellungen und Korrekturen bekommen Sie von
+                mir nur, wenn
+                diese Ihren Ballflug tatsächlich
+                verbessern.</p>
+        </div>
+    </div>
+    <div class="row pt-3 pb-3">
+        <div class="col-md-4">
+            <div class="media">
+                <span class="fa fa-search fa-2x text-center pr-2" style="width: 50px;"></span>
+                <!-- <i class="fa fa-search fa-2x mr-3" aria-hidden="true"></i> -->
+                <div class="media-body">
+                    <h3 class="mt-0">Analyse</h3>
+                    <p>Ich verwende ein System zur Video- und Ballfluganalyse. Auf diese Weise erhalten wir
+                        im Unterricht
+                        ein objektives Feedback und ich kann Ihren Golfschwung schnell und präzise
+                        analysieren. Sie bekommen
+                        von mir nur die Informationen, die
+                        Ihnen wirklich weiterhelfen.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="media">
+                <span class="fa fa-eur fa-2x text-center pr-2" style="width: 50px;"></span>
+                <!-- <i class="fa fa-eur fa-2x mr-3" aria-hidden="true"></i> -->
+                <div class="media-body">
+                    <h3 class="mt-0">Preis</h3>
+                    <p>50 Minuten Golfunterricht kosten 65 Euro.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="media">
+                <span class="fa fa-thumbs-o-up fa-2x text-center pr-2" style="width: 50px;"></span>
+                <!-- <i class="fa fa-thumbs-o-up fa-2x mr-3" aria-hidden="true"></i> -->
+                <div class="media-body">
+                    <h3 class="mt-0">Garantie</h3>
+                    <p>Ich biete meinen Unterricht mit einer uneingeschränkten Geld-zurück-Garantie. Wenn
+                        Sie nicht
+                        zufrieden sind, zahlen Sie nichts oder einen beliebigen Teilbetrag.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+
+
+<div id="aktuell" class="offset_anchor"></div>
+<div id="aktuell_content" class="mt-5 mb-5 pb-5">
+    <div class="row">
+        <div class="col">
+            <h2 style="text-align: center">Aktuelle Beiträge</h2>
+        </div>
+    </div>
+    <div class="row pt-3 bp-3">
+        {% for article in site.query('/artikel') %}
+        <div class="col-md-6 col-xl-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    {% set article_link = article | url %}
+                    <h3 class="card-title" onclick="window.location='{{ article_link }}';">
+                        {{ article.title }}
+                        <!-- <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="{{ article.title|striptags }}">{{ article.title }}</a> -->
+                    </h3>
+                    <p class="card-subtitle mb-2 text-muted">
+                        <!-- Datum -->
+                        {{ article.pub_date | dateformat('full', locale="de_DE") }}
+
+                        <!-- Autor
+                            3 Fälle:
+                            a) Autoren -> anzeigen
+                            b) fremder Autor -> anzeigen
+                            c) nicht anzeigen
+                        -->
+                        {% if article.authors | length > 1 %}
+                        <p> von {{ render_authors(article) }}</p>
+                        {% else %}
+                        {% if not 'Oliver' in article.authors %}
+                        <p> von {{ render_authors(article) }}</p>
+                        {% endif %}
+                        {% endif %}
+                    </p>
+                    <p class="card-text w-100">
+                        {% if not article.summary %}
+                        {{ article.content | excerpt }}
+                        {% else %}
+                        {{ article.summary }}
+                        {% endif %}
+                    </p>
+                    <a href="{{ article | url }}" class="card-link">mehr lesen</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        {#
+        <div class="col-md-6 col-xl-4">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        {{ article.title }}
+                        <!-- <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="{{ article.title|striptags }}">{{ article.title }}</a> -->
+                    </h3>
+                    <p class="card-subtitle mb-2 text-muted">
+                        <time class="published" datetime="{{ article.date.isoformat() }}">
+                            {{ article.locale_date }}
+                        </time>
+                        {% if article.authors|length > 1 %}
+                        <p> von
+                            {% for author in article.authors %}
+                            <a href=" bag('author.e-mail')[author] ">{{ bag('author.name')[author] }}</a>
+                            {% endfor %}
+                        </p>
+                        {% else %}
+                        {% if not article.author == 'Oliver Epper' %}
+                        <p>
+                            <a href="{{ SITEURL }}/{{ article.author.url }}">{{ article.author }}</a>
+                        </p>
+                        {% endif %}
+                        {% endif %}
+                    </p>
+                    <p class="card-text w-100">
+                        {{ article.summary }}
+                    </p>
+                    <a href="{{ SITEURL }}/{{ article.url }}" class="card-link">mehr lesen</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        #}
+    </div>
+</div>
+
+<hr />
+
+<div id="ueber_mich" class="offset_anchor"></div>
+<div id="ueber_mich_content" class="mt-5 mb-5 pb-5">
+    <div class="row">
+        <div class="col">
+            <h2 style="text-align: center">Über mich</h2>
+        </div>
+    </div>
+    <div class="row pt-3 pb-3">
+        <div class="col-md-8 col-lg-9">
+            <p>Schon als Kind habe ich begonnen, mir das Programmieren beizubringen. Ich war als Schüler
+                fasziniert
+                von
+                den Möglichkeiten, die ein Computer bietet. Als das Internet aufkam, war das für meine
+                Neugier und
+                meinen
+                Entdeckergeist wie ein Turbolader. Die Philosophie von freier Software und dem freiem
+                Austausch von
+                Informationen haben mir den Weg in die Selbständigkeit als IT-Dienstleister für Unternehmen
+                ermöglicht.<br>Dann habe ich etwas entdeckt: einen Golfball. Der Golfball hat keine Augen,
+                keine Ohren
+                und
+                keine Moral. Ihm ist es egal, ob Sie Tiger Woods oder eine 90-jährige Oma sind. Der Golfball
+                reagiert
+                auf
+                eine Handvoll Faktoren, die alle im Bruchteil eines Augenblicks wirken – dem Augenblick, in
+                dem der
+                Schläger auf den Ball trifft.<br>Wenn in diesem Moment ein paar dieser Faktoren günstig
+                zusammenwirken,
+                erleben Sie das, was für mich seitdem die größte Faszination ist: einen guten
+                Golfschlag.<br>Dieses
+                Hochgefühl konnte ich am Anfang meiner Golfkarriere nicht wiederholen. Meine Begeisterung
+                war geweckt
+                und
+                mir blieb nichts übrig, als all mein Tun diesem Spiel zu widmen. Das mache ich heute
+                noch.<br>Mittlerweile
+                treffe ich den Ball ordentlich und ich habe herausgefunden, dass es mir unglaublich viel
+                Vergnügen
+                bereitet, das Golfspiel zu vermitteln. Mein Lieblings-Zitat stammt aus dem Vorwort von Ben
+                Hogans „Five
+                Fundamentals“: „Der Durchschnittsgolfer ist durchaus dazu befähigt, einen ständig
+                wiederholbaren Schwung
+                aufzubauen und die 80 zu unterbieten.“ Und genau dabei helfe ich gerne.</p>
+            <p>Zu meinen Vorbildern im Beruf gehören <a href="https://golf.heuler.de" target="_blank"
+                    rel="noopener">Oliver Heuler</a> und <a href="http://roland-becker.org" target="_blank"
+                    rel="noopener">Roland Becker</a>. Oliver war mein Ausbilder im letzten Jahr meiner
+                Ausbildung und er
+                hat
+                mir geholfen, mein angehäuftes Golfwissen zu sortieren und besser zu nutzen.<br>Roland
+                entwickelt seine
+                Schüler mit einen Minimum an Information; seine Erfolge im Leistungssport beeindrucken mich.
+            </p>
+            <p>Seit 2016 arbeite ich als selbständiger Golflehrer auf der Golfanlage am Lietzenhof. Ich
+                erteile dort
+                Einzel- und Gruppenunterricht und betreue die Clubmannschaften sowie das Kinder- und
+                Jugendtraining.
+                Außerdem biete ich Golfschläger-Fitting an.</p>
+        </div>
+        <div class="col-md-4 col-lg-3">
+            <img src="Golfschwung-Bahn-14.jpg" alt="" style="max-width: 100%" class="pb-3">
+            <img src="Analyse.jpg" alt="" style="max-width: 100%" class="pb-3">
+            <img src="Bälle-sammeln.jpg" alt="" style="max-width: 100%">
+        </div>
+    </div>
+</div>
+
+<hr />
+
+<div id="kontakt" class="offset_anchor"></div>
+<div id="kontakt_content" class="mt-5">
+    <div class="row">
+        <div class="col">
+            <h2 style="text-align: center">Kontakt</h2>
+        </div>
+    </div>
+    <div class="row pt-3 pb-3">
+        <div class="col-md-8">
+            <div id="map" class="mb-3" style="height: 400px;"></div>
+        </div>
+        <div class="col-md-4 text-center">
+            <h3>Oliver Epper</h3>
+            <p>
+                Mobil: <a href="tel:+4915123595397">+49 151 23 59 53 97</a><br />
+                E-Mail: <a href="mailto:oliver.epper@gmail.com">oliver.epper@gmail.com</a>
+            </p>
+            <a href="{{ 'visitenkarte' | url }}" class="btn btn-outline-primary">Visitenkarte anzeigen</a>
+        </div>
+    </div>
+    <div class="row pt-3 pb-3">
+        <div class="col">
+            <div class="mailchimp-form jumbotron p-5">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h3>Meinen Newsletter abonnieren</h3>
+                        <div id="spinner" class="fa fa-2x fa-spinner fa-spin" style="display: none; color: #425563">
+                        </div>
+                        <div id="response" style="display: none;"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <form id="newsletter" class="needs-validation" novalidate>
+                            <!-- <label for="mce-FNAME">Vorname</label> -->
+                            <input type="text" class="form-control" id="mce-FNAME" placeholder="Vorname" value=""
+                                required>
+                            <span class="invalid-feedback">Bitte Deinen Vornamen eingeben</span>
+                            <!-- <span class="valid-feedback">Vielen Dank</span> -->
+                            <!-- <label for="mce-LNAME">Nachname</label> -->
+                            <input type="text" class="form-control mt-3" id="mce-LNAME" placeholder="Nachname" value="">
+                            <!-- <label for="mce-FNAME">E-Mail</label> -->
+                            <input type="text" class="form-control mt-3" id="mce-EMAIL" placeholder="E-Mail Adresse"
+                                value="" required>
+                            <span class="invalid-feedback">Bitte Deine E-Mail Adresse eingeben</span>
+                            <button id="subscribe" class="btn btn-outline-secondary btn-block mt-3"
+                                type="submit">Anmelden
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extra_script %}
+<!-- Google Maps API Key Oliver Epper -->
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnyrutmaIBy9zK6redRXRD8deVIQt96xM&callback=initMap">
+</script>
+
+<script>
+    /* Karte initialisieren und anzeigen */
+    function initMap() {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+            'address': "Golfanlage Lietzenhof"
+        }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                latitude = results[0].geometry.location.lat();
+                longitude = results[0].geometry.location.lng();
+                var location = new google.maps.LatLng(latitude, longitude);
+                var mapCanvas = document.getElementById('map');
+                var mapOptions = {
+                    center: location,
+                    zoom: 16,
+                    panControl: false,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var map = new google.maps.Map(mapCanvas, mapOptions);
+            }
+        });
+    }
+
+    /* Newsletter validieren und anmelden */
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    } else {
+                        var form_data = {
+                            fname: $('#mce-FNAME').val(),
+                            lname: $('#mce-LNAME').val(),
+                            email: $('#mce-EMAIL').val(),
+                            test_mode: true
+                        }
+                        $.ajax({
+                            // url: 'http://127.0.0.1:5000/subscribe_json',
+                            url: 'https://api-oliver-epper.appspot.com/subscribe_json',
+                            type: 'POST',
+                            data: JSON.stringify(form_data),
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            beforeSend: function () {
+                                $('#spinner').show();
+                            },
+                            success: function (data) {
+                                $('#spinner').hide();
+                                if (data.error) {
+                                    $('#response').text(
+                                        'Da ist leider etwas schief gelaufen: ' +
+                                        data.error).show();
+                                } else {
+                                    $('#newsletter').hide();
+                                    $('#response').text(
+                                        'Vielen Dank für Deine Anmeldung, ' +
+                                        data.fname + '.').show();
+                                }
+                            }
+                        })
+                        event.preventDefault();
+
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+{% endblock extra_script %}

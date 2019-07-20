@@ -1,0 +1,6 @@
+{% macro render_authors(article) %}
+{% for author_key in article.authors %}
+{% set author = bag('authors')[author_key] %}
+<a href="mailto:{{ author.email }}">{{ author.name }}</a>
+{% endfor %}
+{% endmacro %}

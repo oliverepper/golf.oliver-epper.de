@@ -1,0 +1,8 @@
+[project]
+name = oliver-epper.de
+url = http://127.0.0.1:5000
+# url = https://oliver-epper.de/lektor/
+url_style = absolute
+
+[packages]
+lektor-markdown-excerpt = 0.1

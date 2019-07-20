@@ -1,0 +1,53 @@
+.topper {
+    /* background-color: transparent; */
+    background-color: #ed8b00;
+    color: #fff !important;
+    font-size: smaller;
+}
+
+.topper a {
+    color: #fff !important;
+    padding: 2px;
+}
+
+.topper .fa {
+    color: #fff !important;
+}
+
+#info-phone:before {
+    content: "\f095";
+}
+
+#info-email:before {
+    content: "\f0e0";
+}
+
+#info-facebook::before {
+    content: "\f39e";
+}
+
+#info-phone:before,
+#info-email:before {
+    margin-right: 5px;
+    font-family: FontAwesome;
+}
+
+#info-phone,
+#info-email {
+    margin-right: 10px;
+}
+
+.logo_title {
+    color: #425563;
+    font-size: 36pt;
+    /* font-size: 2.37em; */
+    margin-bottom: 0px;
+}
+
+.logo_subtitle {
+    color: #ED8B00;
+    font-size: 14pt;
+    /* font-size: 1.333em; */
+    font-variant: small-caps;
+    font-style: italic;
+}

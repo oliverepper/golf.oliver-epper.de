@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{{ this.title }} &middot; {{ config.PROJECT.name }} </title>
+
+    <!-- <meta name="description" content="{{ this.meta_description or this._slug }}"> -->
+    <meta name="description" content="{{ this.meta_description or site.get_root().meta_description }}">
+    <meta name="keywords" content="{{ this.meta_keywords or site.get_root().meta_description }}">
+
+    <!-- Bootstrap 4-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Font Awesome-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- eigene Stylesheets -->
+    <link rel="stylesheet" href="{{ '/static/css/site.css' | asseturl }}">
+    <link rel="stylesheet" href="{{ '/static/css/grid.css' | asseturl }}">
+    <link rel="stylesheet" href="{{ '/static/css/header.css' | asseturl }}">
+    <link rel="stylesheet" href="{{ '/static/css/footer.css' | asseturl }}">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91540551-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-91540551-2', { 'anonymize_ip': true });
+    </script>
+
+
+    <script>
+        var WebFontConfig = {
+            google: {
+                families: ['Nunito:400:latin', 'Source Code Pro:400:latin']
+            },
+            timeout: 2000
+        };
+
+        (function (d) {
+            var wf = d.createElement('script'),
+                s = d.scripts[0];
+            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+            wf.async = 'true';
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
+    {% block extra_head %}{% endblock extra_head %}
+</head>
+
+<body data-spy="scroll" data-target="#menu">
+    <div class="grid-container">
+        {% include 'partials/header.html' %}
+
+        {% block hero %}
+        {% endblock hero %}
+
+        <main class="main container">
+            {% block content %}{% endblock content %}
+        </main>
+
+        {% include 'partials/footer.html' %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script>
+        /* Dokument wurde geladen */
+        $(document).ready(function () {
+            console.log('Header: ' + $('header').height());
+            console.log('Footer: ' + $('footer').height());
+        });
+
+        /* Alle Links mit der Klasse sliding-link animieren */
+        $(".sliding-link").click(function (event) {
+            if (
+                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
+                location.hostname == this.hostname
+            ) {
+                event.preventDefault();
+                var hash = this.hash;
+                var target;
+                if (hash !== "") {
+                    target = $(hash).offset().top;
+                } else {
+                    target = 0;
+                }
+                $('html,body').animate({
+                    scrollTop: target
+                }, '800');
+                window.location.hash = hash;
+            }
+        });
+
+        /* Burger Menü schließen, wenn auf einen Link geklickt wurde */
+        $('.navbar-nav>li>a').on('click', function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+
+        // History über den BS Scrollspy updaten
+        $(window).on('activate.bs.scrollspy', function (e) {
+            history.replaceState({}, "", $('.nav-item .active').attr("href"));
+        });
+    </script>
+    {% block extra_script %}{% endblock extra_script %}
+</body>
+
+</html>

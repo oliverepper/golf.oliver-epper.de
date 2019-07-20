@@ -1,0 +1,42 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div id="visitenkarte" class="offset_anchor"></div>
+<div id="visitenkarte_content" class="">
+    <div class="row pt-5 pb-3">
+        <div class="col text-center mt-3 mb-3">
+            <a href="tel:+4915123595397" class="text-secondary">+49 (0) 151 23 59 53 97</a><br />
+            <a href="mailto:golf@oliver-epper.de" class="text-secondary">golf@oliver-epper.de</a><br />
+            <a href="https://oliver-epper.de" class="text-secondary">www.oliver-epper.de</a></br />
+            <a href="https://goo.gl/maps/fbWCfNqxdCN2" target="_blank" rel="noopener">Lietz Kreuz 1 · 54597 Burbach</a>
+        </div>
+        <div class="flipping-image col-md text-center">
+            <img class="shadow mb-5 bg-white rounded w-100" src="Oliver-Epper-Visitenkarte-Vorderseite.png"
+                alt="">
+        </div>
+        <div class="col text-center mt-3">
+            <a href="Oliver-Epper-Visitenkarte.pdf" target="_blank"">Download als PDF</a><br />
+            <a href=" Oliver-Epper.vcf" target="_blank">Download als
+                vCard</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block extra_script %}
+
+<script>
+    /* Visitenkarte */
+    $(".flipping-image").click(function () {
+        var image = $(this).find('img');
+        image.attr('src',
+            (image.attr('src') == 'Oliver-Epper-Visitenkarte-Rückseite.png' ?
+                'Oliver-Epper-Visitenkarte-Vorderseite.png' :
+                'Oliver-Epper-Visitenkarte-Rückseite.png')
+        )
+    });
+</script>
+
+{% endblock extra_script %}
