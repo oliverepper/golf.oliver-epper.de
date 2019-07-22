@@ -1,8 +1,15 @@
 [project]
 name = oliver-epper.de
-url = http://127.0.0.1:5000
+# url = http://127.0.0.1:5000/
 # url = https://oliver-epper.de/lektor/
+url = https://oliver-epper.de/
 url_style = absolute
 
 [packages]
 lektor-markdown-excerpt = 0.1
+
+[servers.staging]
+name = Staging
+enabled = yes
+default = yes
+target = rsync://vickie/home/oliver/oliver-epper.de/html

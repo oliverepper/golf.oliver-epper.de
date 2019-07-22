@@ -3,21 +3,31 @@
 <header class="header fixed-top">
 
     <!-- Top Bar -->
-    <div class="topper container-fluid d-flex">
-        <a href="tel:+4915123595397">
-            <span id="info-phone">+49 (0) 151 23 59 53 97</span>
-        </a>
-        <a href="mailto:oliver.epper@mail.com">
-            <span id="info-email">oliver.epper@gmail.com</span>
-        </a>
-        <a href="http://www.fb.com/oliver.epper" target="_blank" class="pr-2 ml-auto">
-            <span class="fa fa-facebook"></span>
-        </a>
+    <div class="topper container-fluid">
+        <div class="row">
+            <div class="col-xs-3 pl-3">
+                <a href="tel:+4915123595397">
+                    <span class="fas fa-phone"></span>
+                    <span class="d-none d-sm-inline">+49 (0) 151 23 59 53 97</span>
+                </a>
+            </div>
+            <div class="col-xs-3 pl-3">
+                <a href="mailto:oliver.epper@gmail.com">
+                    <span class="fas fa-envelope"></span>
+                    <span class="d-none d-sm-inline">oliver.epper@gmail.com</span>
+                </a>
+            </div>
+            <div class="col-xs-3 pr-3 ml-auto">
+                <a class="pl-1" href="http://www.fb.com/oliver.epper" target="_blank">
+                    <span class="fab fa-facebook"></span>
+                </a>
+            </div>
+        </div>
     </div>
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-md navbar-light bg-light">
-        <a class="navbar-brand" href="{{ site.root | url }}/">
+        <a class="navbar-brand" href="{{ site.root | url }}">
             <h1 class="logo_title">Oliver Epper</h1>
             <span class="logo_subtitle">Fully Qualified PGA Professional</span>
         </a>
@@ -27,14 +37,23 @@
         </button>
         <div id="menu" class="collapse navbar-collapse justify-content-end">
             <ul class="navbar-nav">
+                {% for id, item in bag('menu').items() %}
+                <li class="nav-item">
+                    <a class="nav-link sliding-link" href="{{ site.root | url + item.link }}"
+                        data-target="{{ item.link }}">{{ item.caption }}</a>
+                </li>
+                {% endfor %}
+
+                {#
                 {% for item in bag('menu') %}
                 <li class="nav-item">
                     <a class="nav-link sliding-link" href="{{ ('/') | url() + bag('menu')[item] }}"
                         data-target="{{ bag('menu')[item] }}">{{ item }}</a>
                 </li>
                 {% endfor %}
+                #}
             </ul>
         </div>
     </nav>
-    <!-- Navbar Ende-->
+
 </header>

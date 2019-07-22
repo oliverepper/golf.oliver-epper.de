@@ -64,9 +64,11 @@ main {
 /* iPhone 6s portrait */
 @media (max-width: 575px) {
 
-    /* body { background: lightyellow; } */
+    body { background: lightyellow; }
     :root {
-        --header_height: 144px;
+        /* --header_height: 129px; */
+        /* --footer_height: 21px; */
+        --header_height: 145px;
         --footer_height: 24px;
     }
 
@@ -78,7 +80,7 @@ main {
         height: calc(100vh - var(--header_height));
     }
 
-    .main { min-height: calc(100vh - 2 * var(--footer_height)); }
+    /* .main { min-height: calc(100vh - var(--header_height) - var(--footer_height)); } */
     .offset_anchor {
         height: var(--header_height);
         margin-top: calc(var(--header_height) * -1);
@@ -88,9 +90,11 @@ main {
 /* iPhone 6s landscape */
 @media all and (min-width: 576px) and (max-width: 767px) {
 
-    /* body { background: lightgreen; } */
+    body { background: lightgreen; }
     :root {
-        --header_height: 144px;
+        /* --header_height: 129px; */
+        /* --footer_height: 21px; */
+        --header_height: 145px;
         --footer_height: 24px;
     }
 
@@ -102,7 +106,7 @@ main {
         height: calc(100vh - var(--header_height));
     }
 
-    .main { min-height: calc(100vh - 2 * var(--footer_height)); }
+    /* .main { min-height: calc(100vh - var(--header_height) - var(--footer_height)); } */
     .offset_anchor {
         height: var(--header_height);
         margin-top: calc(var(--header_height) * -1);
@@ -112,9 +116,11 @@ main {
 /* iPad 10.5 portrait */
 @media (min-width: 768px) and (max-width: 991px) {
 
-    /* body { background: rgb(241, 193, 239); } */
+    body { background: lightblue; }
     :root {
-        --header_height: 144px;
+        /* --header_height: 129px;
+        --footer_height: 21px; */
+        --header_height: 145px;
         --footer_height: 24px;
     }
 
@@ -126,10 +132,7 @@ main {
         height: calc(100vh - var(--header_height));
     }
 
-    .main {
-        min-height: calc(100vh - 2 * var(--footer_height));
-    }
-
+    /* .main { min-height: calc(100vh - var(--header_height) - var(--footer_height)); } */
     .offset_anchor {
         height: var(--header_height);
         margin-top: calc(var(--header_height) * -1);
@@ -139,14 +142,16 @@ main {
 /* iPad 10.5 landscape */
 @media (min-width: 992px) and (max-width: 1199px) {
 
-    /* body { background: lightcoral; } */
+    body { background: lightcoral; }
     html {
-        font-size: larger;
+        font-size: 16px;
     }
 
     :root {
-        --header_height: 174px;
-        --footer_height: 28px;
+        /* --header_height: 135px;
+        --footer_height: 24px; */
+        --header_height: 145px;
+        --footer_height: 24px;
     }
 
     .header_spacer {
@@ -157,7 +162,7 @@ main {
         height: calc(100vh - var(--header_height));
     }
 
-    .main { min-height: calc(100vh - 2 * var(--footer_height)); }
+    /* .main { min-height: calc(100vh - var(--header_height) - var(--footer_height)); } */
     .offset_anchor {
         height: var(--header_height);
         margin-top: calc(var(--header_height) * -1);
@@ -167,14 +172,16 @@ main {
 /* Desktop */
 @media all and (min-width: 1200px) {
 
-    /* body { background: lightsteelblue; } */
+    body { background: lightsteelblue; }
     html {
-        font-size: larger;
+        font-size: 16px;
     }
 
     :root {
-        --header_height: 174px;
-        --footer_height: 28px;
+        /* --header_height: 135px;
+        --footer_height: 24px; */
+        --header_height: 145px;
+        --footer_height: 24px;
     }
 
     .header_spacer {
@@ -185,7 +192,7 @@ main {
         height: calc(100vh - var(--header_height));
     }
 
-    .main { min-height: calc(100vh - 2 * var(--footer_height)); }
+    /* .main { min-height: calc(100vh - var(--header_height) - var(--footer_height)); } */
     .offset_anchor {
         height: var(--header_height);
         margin-top: calc(var(--header_height) * -1);
