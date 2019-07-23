@@ -10,14 +10,17 @@
             <h2>{{ this.title }}</h2>
         </div>
     </div>
+    {% for image in this.attachments.images %}
+    {% if image.is_title_image %}
     <div class="row">
         <div class="col">
-            {% for image in this.attachments.images %}
-            <div class="image pt-2 pb-2"><img src="{{ image | url }}">
-                {% endfor %}
+            <div class="image pt-2 pb-2">
+                <img src="{{ image | url }}">
             </div>
         </div>
     </div>
+    {% endif %}
+    {% endfor %}
     <div class="row pt-3 pb-3">
         <div class=col>
             {{ this.content }}
