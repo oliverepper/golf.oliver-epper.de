@@ -2,6 +2,14 @@
 
 {% block title %}{{ this.title }}{% endblock %}
 
+{% block extra_head %}
+{% for image in this.attachments.images %}
+{% if image.is_title_image %}
+<meta property="og:image" content="{{ image | url(external=true) }}"> -->
+{% endif %}
+{% endfor %}
+{% endblock extra_head %}
+
 {% block content %}
 <div id="artikel" class="offset_anchor"></div>
 <div id="artikel_content" class="mt-5">
