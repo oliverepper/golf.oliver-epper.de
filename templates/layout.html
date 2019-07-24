@@ -8,7 +8,6 @@
 
     <title>{{ this.title }} &middot; {{ config.PROJECT.name }} </title>
 
-    <!-- <meta name="description" content="{{ this.meta_description or this._slug }}"> -->
     <meta name="description" content="{{ this.meta_description or site.get_root().meta_description }}">
     <meta name="keywords" content="{{ this.meta_keywords or site.get_root().meta_description }}">
 
@@ -21,7 +20,6 @@
 
     <!-- eigene Stylesheets -->
     <link rel="stylesheet" href="{{ '/static/css/site.css' | asseturl }}">
-    <!-- <link rel="stylesheet" href="{{ '/static/css/grid.css' | asseturl }}"> -->
     <link rel="stylesheet" href="{{ '/static/css/header.css' | asseturl }}">
     <link rel="stylesheet" href="{{ '/static/css/footer.css' | asseturl }}">
 

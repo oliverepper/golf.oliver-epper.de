@@ -17,4 +17,4 @@ target = rsync://vickie/home/oliver/oliver-epper.de/html
 
 [servers.ghpages]
 name = GitHub
-target = ghpages://oliverepper/oliverepper.github.io
+target = ghpages://oliverepper/oliverepper.github.io?cname=staging.oliver-epper.de
