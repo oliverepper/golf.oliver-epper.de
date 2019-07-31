@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="de" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{{ this.title }} &middot; {{ config.PROJECT.name }} </title>
+
+    <meta name="description" content="{{ this.meta_description or site.get_root().meta_description }}">
+    <meta name="keywords" content="{{ this.meta_keywords or site.get_root().meta_description }}">
+
+    <!-- Opengraph Properties -->
+    <meta property="og:locale" content="de_DE">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ this.title or site.get_root().title }}">
+    <meta property="og:description" content="{{ this.meta_description or site.get_root().meta_description }}">
+    <meta property="og:url" content="{{ this | url(external=true) }}">
+    <!-- FIXME: meta_description 
+    <meta property="og:image" content="FIXME"> -->
+
+    <% for (var css in htmlWebpackPlugin.files.css) { %>
+    <link href="{{ '/static/gen/<%= htmlWebpackPlugin.files.css[css] %>' | asseturl }}" rel="stylesheet">
+    <% } %>
+
+    <script>
+        document.documentElement.classList.remove("no-js");
+    </script>
+
+    <script src="{{ '/static/js/modernizr-custom.js' | asseturl }}"></script>
+
+    <!-- Font Awesome-->
+    <script src="https://kit.fontawesome.com/da270ec08e.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-91540551-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-91540551-2', {
+            'anonymize_ip': true
+        });
+    </script>
+
+
+    <script>
+        var WebFontConfig = {
+            google: {
+                families: ['Nunito:400:latin', 'Source Code Pro:400:latin']
+            },
+            timeout: 2000
+        };
+
+        (function (d) {
+            var wf = d.createElement('script'),
+                s = d.scripts[0];
+            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+            wf.async = 'true';
+            s.parentNode.insertBefore(wf, s);
+        })(document);
+    </script>
+
+    {% block extra_head %}{% endblock extra_head %}
+</head>
+
+<body data-spy="scroll" data-target="#menu">
+    <div class="grid-container">
+        {% include 'partials/header.html' %}
+
+        {% block hero %}
+        {% endblock hero %}
+
+        <main class="main container">
+            {% block content %}{% endblock content %}
+        </main>
+
+        {% include 'partials/footer.html' %}
+    </div>
+
+
+    <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
+    <script src="{{ '/static/gen/<%= htmlWebpackPlugin.files.chunks[chunk].entry %>' | asseturl }}"></script>
+    <% } %>
+
+    <script>
+        /* Dokument wurde geladen */
+        $(document).ready(function () {
+            // console.log('Header: ' + $('header').height());
+            // console.log('Footer: ' + $('footer').height());
+        });
+
+        /* Alle Links mit der Klasse sliding-link animieren */
+        $(".sliding-link").click(function (event) {
+            if (
+                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
+                location.hostname == this.hostname
+            ) {
+                event.preventDefault();
+                var hash = this.hash;
+                var target;
+                if (hash !== "") {
+                    target = $(hash).offset().top;
+                } else {
+                    target = 0;
+                }
+                $('html,body').animate({
+                    scrollTop: target
+                }, '800');
+                window.location.hash = hash;
+            }
+        });
+
+        /* Burger Menü schließen, wenn auf einen Link geklickt wurde */
+        $('.navbar-nav>li>a').on('click', function () {
+            $('.navbar-collapse').collapse('hide');
+        });
+
+        // History über den BS Scrollspy updaten
+        $(window).on('activate.bs.scrollspy', function (e) {
+            history.replaceState({}, "", $('.nav-item .active').attr("href"));
+        });
+    </script>
+    {% block extra_script %}{% endblock extra_script %}
+</body>
+
+</html>
