@@ -20,3 +20,13 @@ $(".sliding-link").click(function (event) {
         window.location.hash = hash;
     }
 });
+
+/* Burger Menü schließen, wenn auf einen Link geklickt wurde */
+$('.navbar-nav>li>a').on('click', function () {
+    $('.navbar-collapse').collapse('hide');
+});
+
+// History über den BS Scrollspy updaten
+$(window).on('activate.bs.scrollspy', function (e) {
+    history.replaceState({}, "", $('.nav-item .active').attr("href"));
+});

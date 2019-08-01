@@ -1,8 +1,9 @@
 [project]
 name = oliver-epper.de
 # url = http://127.0.0.1:5000/
-# url = https://oliver-epper.de/
-url = https://oliverepper.de/
+url = https://oliver-epper.de/
+# url = https://oliverepper.de/
+# url = https://oliverepper.github.io
 url_style = absolute
 locale = de_DE
 
@@ -24,4 +25,4 @@ target = rsync://vickie/home/oliver/oliver-epper.de/html
 
 [servers.ghpages]
 name = GitHub
-target = ghpages://oliverepper/oliverepper.github.io?cname=staging.oliver-epper.de
+target = ghpages://oliverepper/oliverepper.github.io
