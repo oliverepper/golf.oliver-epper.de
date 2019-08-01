@@ -28,7 +28,7 @@
         document.documentElement.classList.remove("no-js");
     </script>
 
-    <script src="{{ '/static/js/modernizr-custom.js' | asseturl }}"></script>
+    <!-- <script src="{{ '/static/js/modernizr-custom.js' | asseturl }}"></script> -->
 
     <!-- Font Awesome-->
     <script src="https://kit.fontawesome.com/da270ec08e.js"></script>
@@ -70,18 +70,17 @@
 </head>
 
 <body data-spy="scroll" data-target="#menu">
-    <div class="grid-container">
-        {% include 'partials/header.html' %}
 
-        {% block hero %}
-        {% endblock hero %}
+    {% include 'partials/header.html' %}
 
-        <main class="main container">
-            {% block content %}{% endblock content %}
-        </main>
+    {% block hero %}
+    {% endblock hero %}
 
-        {% include 'partials/footer.html' %}
-    </div>
+    <main class="main container">
+        {% block content %}{% endblock content %}
+    </main>
+
+    {% include 'partials/footer.html' %}
 
 
     <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
@@ -96,25 +95,25 @@
         });
 
         /* Alle Links mit der Klasse sliding-link animieren */
-        $(".sliding-link").click(function (event) {
-            if (
-                location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
-                location.hostname == this.hostname
-            ) {
-                event.preventDefault();
-                var hash = this.hash;
-                var target;
-                if (hash !== "") {
-                    target = $(hash).offset().top;
-                } else {
-                    target = 0;
-                }
-                $('html,body').animate({
-                    scrollTop: target
-                }, '800');
-                window.location.hash = hash;
-            }
-        });
+        // $(".sliding-link").click(function (event) {
+        //     if (
+        //         location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
+        //         location.hostname == this.hostname
+        //     ) {
+        //         event.preventDefault();
+        //         var hash = this.hash;
+        //         var target;
+        //         if (hash !== "") {
+        //             target = $(hash).offset().top;
+        //         } else {
+        //             target = 0;
+        //         }
+        //         $('html,body').animate({
+        //             scrollTop: target
+        //         }, '800');
+        //         window.location.hash = hash;
+        //     }
+        // });
 
         /* Burger Menü schließen, wenn auf einen Link geklickt wurde */
         $('.navbar-nav>li>a').on('click', function () {

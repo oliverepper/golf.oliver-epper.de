@@ -5,7 +5,7 @@
 {% block extra_head %}
 {% for image in this.attachments.images %}
 {% if image.is_title_image %}
-<meta property="og:image" content="{{ image | url(external=true) }}"> -->
+<meta property="og:image" content="{{ image | url(external=true) }}">
 {% endif %}
 {% endfor %}
 {% endblock extra_head %}

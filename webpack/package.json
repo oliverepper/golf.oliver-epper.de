@@ -23,6 +23,7 @@
     "popper.js": "^1.15.0",
     "sass-loader": "^7.1.0",
     "webpack": "^4.38.0",
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^3.3.6",
+    "webpack-modernizr-loader": "^5.0.0"
   }
 }
