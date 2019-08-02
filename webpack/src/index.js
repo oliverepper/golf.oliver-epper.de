@@ -1,6 +1,6 @@
 import "./main.scss";
-import "bootstrap";
-// import "bootstrap/js/dist/collapse";
+// import "bootstrap";
+import "bootstrap/js/dist/collapse";
 
 /* Alle Links mit der Klasse sliding-link animieren */
 $(".sliding-link").click(function (event) {
