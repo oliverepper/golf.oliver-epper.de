@@ -12,8 +12,8 @@ module.exports = {
     mode: "production",
     // mode: "development",
     entry: {
-        main: "./src/index.js",
-        vendor: "./src/vendor.js"
+        vendor: "./src/vendor.js",
+        main: "./src/index.js"
     },
     output: {
         filename: "[name].[contentHash].bundle.js",
@@ -33,17 +33,21 @@ module.exports = {
                     removeComments: true
                 }
             })
-        ]
+        ],
+        splitChunks: {
+            chunks: 'all'
+        }
     },
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
             filename: "[name].[contentHash].css"
         }),
-        new webpack.ProvidePlugin({
-            $: "jquery",
-            jQuery: "jquery"
-        })
+        // new webpack.ProvidePlugin({
+        //     $: "jquery",
+        //     jQuery: "jquery",
+        //     // Collapse: "exports-loader?Collapse!bootstrap/js/dist/collapse"
+        // })
     ],
     module: {
         rules: [{
