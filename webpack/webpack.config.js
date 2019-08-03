@@ -7,6 +7,7 @@ const {
 } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const webpack = require("webpack");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
     mode: "production",
@@ -43,6 +44,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].[contentHash].css"
         }),
+        new Dotenv()
         // new webpack.ProvidePlugin({
         //     $: "jquery",
         //     jQuery: "jquery",
