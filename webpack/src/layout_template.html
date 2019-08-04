@@ -21,7 +21,7 @@
     <meta property="og:image" content="FIXME"> -->
 
     <% for (var css in htmlWebpackPlugin.files.css) { %>
-    <link href="{{ '/static/gen/<%= htmlWebpackPlugin.files.css[css] %>' | asseturl }}" rel="stylesheet">
+    <link href="{{ '/generated/<%= htmlWebpackPlugin.files.css[css] %>' | asseturl }}" rel="stylesheet">
     <% } %>
 
     <script>
@@ -78,7 +78,7 @@
     {% include 'partials/footer.html' %}
 
     <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-    <script src="{{ '/static/gen/<%= htmlWebpackPlugin.files.chunks[chunk].entry %>' | asseturl }}"></script>
+    <script src="{{ '/generated/<%= htmlWebpackPlugin.files.chunks[chunk].entry %>' | asseturl }}"></script>
     <% } %>
 
     {% block extra_script %}{% endblock extra_script %}

@@ -11,7 +11,8 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons/faAngleDown";
 import { faSearch } from "@fortawesome/free-solid-svg-icons/faSearch";
 import { faThumbsUp } from "@fortawesome/free-solid-svg-icons/faThumbsUp";
 import { faEuroSign } from "@fortawesome/free-solid-svg-icons/faEuroSign";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons/faSpinner";
 
 
-library.add(faPhone, faEnvelope, faFacebook, faAngleDown, faSearch, faThumbsUp, faEuroSign);
+library.add(faPhone, faEnvelope, faFacebook, faAngleDown, faSearch, faThumbsUp, faEuroSign, faSpinner);
 dom.watch();

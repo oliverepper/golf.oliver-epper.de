@@ -5,7 +5,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --config webpack.config.js; cp ../assets/static/gen/layout_gen.html ../templates/"
+    "start": "webpack --config webpack.config.js; cp ../assets/generated/layout_generated.html ../templates/"
   },
   "keywords": [],
   "author": "",

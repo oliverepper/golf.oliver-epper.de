@@ -18,7 +18,7 @@ module.exports = {
     },
     output: {
         filename: "[name].[contentHash].bundle.js",
-        path: path.dirname(__dirname) + "/assets/static/gen"
+        path: path.dirname(__dirname) + "/assets/generated"
     },
     optimization: {
         minimizer: [
@@ -26,7 +26,7 @@ module.exports = {
             new TerserPlugin(),
             new HtmlWebpackPlugin({
                 inject: false,
-                filename: "layout_gen.html",
+                filename: "layout_generated.html",
                 template: "./src/layout_template.html",
                 minify: {
                     removeAttributeQuotes: true,
@@ -61,7 +61,7 @@ module.exports = {
                     loader: "file-loader",
                     options: {
                         name: "[name].[hash].[ext]",
-                        outputPath: "imgs"
+                        outputPath: "images"
                     }
                 }
             },
@@ -75,4 +75,4 @@ module.exports = {
             }
         ]
     },
- };
+};
