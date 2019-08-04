@@ -299,28 +299,14 @@
 </script> -->
 
 <script>
-    /* Karte initialisieren und anzeigen */
-    /*
-    function initMap() {
-        var geocoder = new google.maps.Geocoder();
-        geocoder.geocode({
-            'address': "Golfanlage Lietzenhof"
-        }, function (results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                latitude = results[0].geometry.location.lat();
-                longitude = results[0].geometry.location.lng();
-                var location = new google.maps.LatLng(latitude, longitude);
-                var mapCanvas = document.getElementById('map');
-                var mapOptions = {
-                    center: location,
-                    zoom: 16,
-                    panControl: false,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                }
-                var map = new google.maps.Map(mapCanvas, mapOptions);
-            }
+    /* Google Karte */
+    document.addEventListener("DOMContentLoaded", function () {
+        let mapElement = document.getElementById('map');
+
+        Map.loadGoogleMapsApi().then(function (googleMaps) {
+            Map.createMap(googleMaps, mapElement);
         });
-    }
+    });
 
     /* Newsletter validieren und anmelden */
     (function () {

@@ -1,25 +1,9 @@
 import "./main.scss";
 // import "bootstrap";
 import "bootstrap/js/dist/collapse";
-import {
-    Map
-} from './map';
-
-/* Google Karte */
-document.addEventListener("DOMContentLoaded", function () {
-    let mapElement = document.getElementById('map');
-
-    if (mapElement == undefined) {
-        alert("Keine Karte in der Seite");
-        return;
-    } else {
-        alert("Karte in der Seite");
-    }
-
-    Map.loadGoogleMapsApi().then(function (googleMaps) {
-        Map.createMap(googleMaps, mapElement);
-    });
-});
+import { Map } from "./map";
+window.Map.loadGoogleMapsApi = Map.loadGoogleMapsApi;
+window.Map.createMap = Map.createMap;
 
 /* Alle Links mit der Klasse sliding-link animieren */
 $(".sliding-link").click(function (event) {

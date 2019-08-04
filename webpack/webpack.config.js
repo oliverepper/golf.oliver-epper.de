@@ -44,12 +44,7 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: "[name].[contentHash].css"
         }),
-        new Dotenv()
-        // new webpack.ProvidePlugin({
-        //     $: "jquery",
-        //     jQuery: "jquery",
-        //     // Collapse: "exports-loader?Collapse!bootstrap/js/dist/collapse"
-        // })
+        new Dotenv(),
     ],
     module: {
         rules: [{
