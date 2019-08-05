@@ -17,7 +17,8 @@ module.exports = {
         main: "./src/index.js"
     },
     output: {
-        filename: "[name].[contentHash].bundle.js",
+        // filename: "[name].[contentHash].bundle.js",
+        filename: "[name].bundle.js",
         path: path.dirname(__dirname) + "/assets/generated"
     },
     optimization: {
@@ -42,7 +43,8 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({
-            filename: "[name].[contentHash].css"
+            // filename: "[name].[contentHash].css"
+            filename: "[name].css"
         }),
         new Dotenv(),
     ],
