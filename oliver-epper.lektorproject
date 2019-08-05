@@ -1,8 +1,8 @@
 [project]
 name = oliver-epper.de
-url = http://127.0.0.1:5000/
+# url = http://127.0.0.1:5000/
 # url = https://oliver-epper.de/
-# url = https://oliverepper.de/
+url = https://oliverepper.de/
 # url = https://oliverepper.github.io
 url_style = absolute
 locale = de_DE
