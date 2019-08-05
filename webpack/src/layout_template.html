@@ -19,6 +19,7 @@
     <meta property="og:url" content="{{ this | url(external=true) }}">
     <!-- FIXME: meta_description 
     <meta property="og:image" content="FIXME"> -->
+    <!-- <meta property="og:image" content="{{ '/static/images/Tiger-DL-Iron.jpg' | asseturl }}"> -->
 
     <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="{{ '/generated/<%= htmlWebpackPlugin.files.css[css] %>' | asseturl }}" rel="stylesheet">
@@ -47,7 +48,7 @@
     <script>
         var WebFontConfig = {
             google: {
-                families: ['Nunito:400:latin']
+                families: ['Nunito:400,400i,700:latin']
             },
             timeout: 2000
         };

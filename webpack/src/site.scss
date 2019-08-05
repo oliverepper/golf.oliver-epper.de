@@ -1,9 +1,13 @@
-.wf-loading body {
+body {
     font-family: system-ui, sans-serif;
 }
 
+// .wf-loading body {
+//     font-family: system-ui, sans-serif;
+// }
+
 .wf-active body {
-    font-family: "Nunito";
+    font-family: "Nunito", system-ui, sans-serif;
 }
 
 html {
