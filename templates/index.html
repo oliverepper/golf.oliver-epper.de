@@ -82,12 +82,10 @@
                     {% set article_link = article | url %}
                     <h3 class="card-title" onclick="window.location='{{ article_link }}';">
                         {{ article.title }}
-                        <!-- <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="{{ article.title|striptags }}">{{ article.title }}</a> -->
                     </h3>
                     <p class="card-subtitle mb-2 text-muted">
                         <!-- Datum -->
                         {{ article.pub_date | dateformat('full', locale="de_DE") }}
-
                         <!-- Autor
                             3 Fälle:
                             a) Autoren -> anzeigen

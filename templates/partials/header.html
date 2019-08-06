@@ -43,15 +43,6 @@
                         data-target="{{ item.link }}">{{ item.caption }}</a>
                 </li>
                 {% endfor %}
-
-                {#
-                {% for item in bag('menu') %}
-                <li class="nav-item">
-                    <a class="nav-link sliding-link" href="{{ ('/') | url() + bag('menu')[item] }}"
-                        data-target="{{ bag('menu')[item] }}">{{ item }}</a>
-                </li>
-                {% endfor %}
-                #}
             </ul>
         </div>
     </nav>
