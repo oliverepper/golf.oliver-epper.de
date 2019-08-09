@@ -5,3 +5,4 @@ venv
 webpack/.env
 .python-version
 assets/generated
+templates/layout_generated.html
