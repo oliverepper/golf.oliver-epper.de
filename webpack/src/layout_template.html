@@ -17,10 +17,7 @@
     <meta property="og:title" content="{{ this.title or site.get_root().title }}">
     <meta property="og:description" content="{{ this.meta_description or site.get_root().meta_description }}">
     <meta property="og:url" content="{{ this | url(external=true) }}">
-    <!-- FIXME: meta_description 
-    <meta property="og:image" content="FIXME"> -->
-    <meta property="og:image" content="{{ '/generated/<%=require('../assets/Oliver-Epper.jpg')%>' | url(external=True) }}">
-    <meta property="fb:app_id" content="530796111060110"> 
+    <meta property="fb:app_id" content="530796111060110">
 
     <% for (var css in htmlWebpackPlugin.files.css) { %>
     <link href="{{ '/generated/<%= htmlWebpackPlugin.files.css[css] %>' | asseturl }}" rel="stylesheet">
@@ -63,7 +60,10 @@
         })(document);
     </script>
 
-    {% block extra_head %}{% endblock extra_head %}
+    {% block extra_head %}
+    <meta property="og:image" content="{{ '/generated/<%=require('../assets/Oliver-Epper.jpg')%>' | url(external=True) }}">
+    <meta property="og:image:alt" content="Oliver Epper" />
+    {% endblock extra_head %}
 </head>
 
 <body data-spy="scroll" data-target="#menu">
