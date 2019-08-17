@@ -3,11 +3,18 @@
 {% block title %}{{ this.title }}{% endblock %}
 
 {% block extra_head %}
+{% set ns = namespace(new_image=false) %}
 {% for image in this.attachments.images %}
-{% if image.is_title_image %}
-<meta property="og:image" content="{{ image | url(external=true) }}">
-{% endif %}
+    {% if image.is_opengraph_image or image.is_title_image %}
+        <!-- Artikel hat eigenes Bild für og:image -->
+        {% set ns.new_image = true %}
+        <meta property="og:image" content="{{ image | url(external=true) }}">
+    {% endif %}
 {% endfor %}
+{% if not ns.new_image %}
+    <!-- super-Block wird verwendet -->
+    {{ super () }}
+{% endif %}
 {% endblock extra_head %}
 
 {% block content %}
